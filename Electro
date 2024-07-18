@@ -1,0 +1,79 @@
+local gameID = 3623096087 
+if game.PlaceId ~= gameID then
+    return
+end
+
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+
+local Window = OrionLib:MakeWindow({Name = "Electro GUI | Muscle Legends", HidePremium = false, SaveConfig = true, ConfigFolger = "Electro GUI"})
+
+local AutoClickTab = Window:MakeTab({
+	Name = "Auto Farm",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local AutoHatchTab = Window:MakeTab({
+	Name = "Auto Hatch",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local TradeTab = Window:MakeTab({
+	Name = "Scam Trade",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local AutoClickEnabled = false
+local AutoHatchEnabled = false
+
+AutoClickTab:AddToggle({
+	Name = "Enable AutoClick",
+	Default = false,
+	Callback = function(value)
+		AutoClickEnabled = value
+        if AutoClickEnabled then
+            while AutoClickEnabled do
+                wait(0000000000000000000000000000000000000000000000000001)
+            end
+        end
+	end    
+})
+
+AutoHatchTab:AddToggle({
+	Name = "Enable AutoHatch",
+	Default = false,
+	Callback = function(value)
+		AutoClickHatchEnabled = value
+        if AutoHatchEnabled then
+            while AutoHatchEnabled do
+                wait(1)
+            end
+        end
+	end    
+})
+
+local function freezePlayer(player)
+    if player and player.Character then
+        player.Character.HumanoidRootPart.Anchord = true
+    end
+end
+
+TradeTab = AddButton({
+	Name = "Freeze Player",
+    Callback = function()
+        local targetPlayer = game.Players:FindFirstChild("TargetPlayerName")
+        freezePlayer(targetPlayer)
+    end    
+})
+
+TradeTab:AddButton({
+	Name = "Force Accept Trade",
+	Callback = function()
+      	local targetplayer = game.Players:FindFirstChild("TargetPlayerName")
+        forceAcceptTrade(targetPlayer)
+    end
+})
+
+OrionLib:Init()
